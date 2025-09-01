@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  postgres-innovacion:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - backend_pgdata:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      PORT: ${BACKEND_PORT}
+    depends_on:
+      - postgres-innovacion
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+
+  frontend-web:
+    build:
+      context: ./frontend-web
+    environment:
+      REACT_APP_BACKEND_URL: "http://localhost:${BACKEND_PORT}/api"
+    ports:
+      - "${FRONTEND_WEB_PORT}:${FRONTEND_WEB_PORT}"
+
+  frontend-mobile:
+    build:
+      context: ./frontend-mobile
+    environment:
+      BACKEND_URL: "http://localhost:${BACKEND_PORT}/api"
+    ports:
+      - "${FRONTEND_MOBILE_PORT}:${FRONTEND_MOBILE_PORT}"
+
+volumes:
+  backend_pgdata:
