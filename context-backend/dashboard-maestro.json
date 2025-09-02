@@ -1,0 +1,23 @@
+{
+  "CL": {
+    "index": "web-build/CL/index.html",
+    "badge": "badge-cl.svg",
+    "dashboard": "dashboard-CL.json",
+    "entorno": "produccion",
+    "servicio": "frontend-mobile"
+  },
+  "MX": {
+    "index": "web-build/MX/index.html",
+    "badge": "badge-mx.svg",
+    "dashboard": "dashboard-MX.json",
+    "entorno": "produccion",
+    "servicio": "frontend-mobile"
+  },
+  "ES": {
+    "index": "web-build/ES/index.html",
+    "badge": "badge-es.svg",
+    "dashboard": "dashboard-ES.json",
+    "entorno": "produccion",
+    "servicio": "frontend-mobile"
+  }
+}
