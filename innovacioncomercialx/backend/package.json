@@ -1,0 +1,19 @@
+{
+  "name": "innovacioncomercialx-backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "dotenv": "*",
+    "cors": "*",
+    "compression": "*",
+    "pg": "*",
+    "sequelize": "*",
+    "sequelize-cli": "*",
+    "bcryptjs": "*",
+    "jsonwebtoken": "*"
+  }
+}

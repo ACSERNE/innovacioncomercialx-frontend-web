@@ -1,20 +1,19 @@
 #!/bin/bash
-set -e
+# Script cockpitizado para validar estructura, instalar dependencias y levantar entorno
 
-echo "🛑 Deteniendo y eliminando contenedores antiguos..."
-docker-compose down -v
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+log="logs/deploy-$timestamp.log"
+mkdir -p logs
 
-echo "🔨 Construyendo imágenes y levantando servicios..."
-docker-compose up --build -d
+echo "🚀 Iniciando validación estructural..." | tee "$log"
+./verificador-estructura.sh >> "$log" 2>&1
 
-echo "⏳ Esperando a que PostgreSQL esté listo en postgres-innovacion:5432..."
-until docker exec postgres-innovacion pg_isready -U $DB_USER -d $DB_NAME; do
-  sleep 2
-done
+echo "🔧 Construyendo contenedores por entorno..." | tee -a "$log"
+docker-compose build backend >> "$log" 2>&1
+docker-compose build frontend-web >> "$log" 2>&1
+docker-compose build frontend-mobile >> "$log" 2>&1
 
-echo "✅ PostgreSQL listo"
-echo "🚀 Todos los servicios deberían estar levantados:"
-echo "🔹 Backend: http://localhost:5002"
-echo "🔹 Frontend Web: http://localhost:3000"
-echo "🔹 Frontend Móvil (Expo): http://localhost:19006"
-echo "🔹 pgAdmin: http://localhost:8080"
+echo "🟢 Levantando entorno cockpitizado..." | tee -a "$log"
+docker-compose up >> "$log" 2>&1
+
+echo "📋 Log técnico generado: $log"

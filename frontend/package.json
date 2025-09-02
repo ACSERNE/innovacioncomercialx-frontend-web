@@ -1,0 +1,21 @@
+{
+  "name": "innovacioncomercialx-frontend-web",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "web": "expo start --web",
+    "build": "expo export:web"
+  },
+  "dependencies": {
+    "expo": "*",
+    "expo-router": "*",
+    "expo-splash-screen": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "*"
+  }
+}

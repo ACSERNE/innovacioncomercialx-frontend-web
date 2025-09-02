@@ -1,0 +1,14 @@
+# Auto-generado por limpiar-contexto.sh
+node_modules
+.git
+dist
+build
+coverage
+.next
+.turbo
+.cache
+*.log
+*.tmp
+*.bak
+*.zip
+*.tar.gz
