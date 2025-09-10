@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres
+    container_name: postgres_db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -8,47 +9,38 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data
-
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
+      - ./data:/var/lib/postgresql/data
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      PORT: ${PORT}
+    build: ./backend
+    container_name: backend_app
+    working_dir: /usr/src/app
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
-      - "${PORT}:${PORT}"
+      - "5001:5001"
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+      DB_PORT: 5432
 
   frontend-web:
-    build:
-      context: ./frontend-web
-      dockerfile: Dockerfile
+    build: ./frontend-web
+    container_name: frontend_web
     ports:
-      - "${FRONTEND_WEB_PORT}:80"
+      - "3000:80"
+    depends_on:
+      - backend
 
   frontend-mobile:
-    build:
-      context: ./frontend-mobile
-      dockerfile: Dockerfile
+    build: ./frontend-mobile
+    container_name: frontend_mobile
     ports:
-      - "${FRONTEND_MOBILE_PORT}:80"
-
-volumes:
-  db-data:
+      - "19006:80"
+    depends_on:
+      - backend

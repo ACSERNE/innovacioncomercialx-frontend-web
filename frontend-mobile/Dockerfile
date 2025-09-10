@@ -1,21 +1,18 @@
-# Dockerfile para frontend-mobile con resolución quirúrgica de dependencias
-
+# Stage 1: Build
 FROM node:20-alpine AS build
 
 WORKDIR /app
+
 COPY package*.json ./
-
-# Script embebido para resolver conflictos de dependencias
-RUN echo '#!/bin/sh' > resolver-dependencias.sh && \
-    echo 'echo "🔍 Resolviendo react-native-web inválido..."' >> resolver-dependencias.sh && \
-    echo 'version=$(npm view react-native-web versions | grep "^0\\.19\\." | tail -1)' >> resolver-dependencias.sh && \
-    echo '[ -n "$version" ] && sed -i "s/react-native-web@0.19.16/react-native-web@$version/" package.json' >> resolver-dependencias.sh && \
-    echo 'npm install --legacy-peer-deps' >> resolver-dependencias.sh && \
-    chmod +x resolver-dependencias.sh && \
-    ./resolver-dependencias.sh
-
+RUN npm install
 COPY . .
-RUN npx expo export --output-dir web-build
+RUN npm run build
 
-FROM nginx:alpine AS stage-1
-COPY --from=build /app/web-build /usr/share/nginx/html
+# Stage 2: Serve with Nginx
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

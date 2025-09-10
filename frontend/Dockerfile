@@ -1,25 +1,20 @@
-# Etapa 1: build de React/Expo web
-FROM node:20-alpine AS build
+# Imagen base
+FROM node:20-alpine
 
+# Directorio de trabajo
 WORKDIR /app
 
-# Copiamos package.json y package-lock.json
+# Copiar package.json y package-lock.json
 COPY package*.json ./
 
-# Instalamos dependencias
+# Instalar dependencias
 RUN npm install
 
-# Copiamos el resto del proyecto
+# Copiar el resto del proyecto
 COPY . .
 
-# Generamos build web de React/Expo
-RUN npm run build
+# Exponer puerto
+EXPOSE 3000
 
-# Etapa 2: servir build con Nginx
-FROM nginx:alpine
-
-# Copiamos el build al directorio de Nginx
-COPY --from=build /app/build /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Comando por defecto
+CMD ["npm", "start"]

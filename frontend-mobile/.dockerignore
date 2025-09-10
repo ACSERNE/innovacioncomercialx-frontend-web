@@ -1,8 +1,9 @@
 node_modules
-logs
-*.log
-*.csv
-*.xlsx
-*.pdf
+npm-debug.log
+Dockerfile
+docker-compose.yml
 .env
-.DS_Store
+*.log
+dist
+build
+coverage

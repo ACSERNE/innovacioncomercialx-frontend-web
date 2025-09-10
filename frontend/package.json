@@ -1,21 +1,16 @@
 {
-  "name": "innovacioncomercialx-frontend-web",
+  "name": "comercialx-frontend",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "web": "expo start --web",
-    "build": "expo export:web"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
-    "expo": "*",
-    "expo-router": "*",
-    "expo-splash-screen": "*",
-    "react": "*",
-    "react-dom": "*",
-    "react-native": "*",
-    "react-native-web": "*"
-  },
-  "devDependencies": {
-    "@babel/core": "*"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1"
   }
 }
