@@ -1,0 +1,54 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Environment variables (no subir nunca)
+.env
+.env.*
+!.env.example   # puedes dejar un ejemplo si lo necesitas
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+**/build/
+
+# Docker artefacts
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+*.tar
+*.pid
+
+# Coverage / testing
+coverage/
+*.lcov
+
+# IDE / editor configs
+.vscode/
+.idea/
+*.swp
+
+# Backend: ignorar todo excepto migraciones y seeders
+backend/*
+!backend/migrations/
+!backend/migrations/*.js
+!backend/seeders/
+!backend/seeders/*.js
+
+# Frontend: ignorar artefactos de build
+frontend/dist/
+frontend/.cache/
+.expo/
+test-clone/
+test-clone2/
