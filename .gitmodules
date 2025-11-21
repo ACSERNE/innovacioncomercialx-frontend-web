@@ -1,0 +1,3 @@
+[submodule "innovacioncomercialx-frontend-web"]
+    path = innovacioncomercialx-frontend-web
+    url = https://github.com/ACSERNE/innovacioncomercialx-frontend-web.git
