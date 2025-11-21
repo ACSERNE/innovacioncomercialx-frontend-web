@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/innovacioncomercialx/static/js/main.f874058e.js",
-    "index.html": "/innovacioncomercialx/index.html",
-    "main.f874058e.js.map": "/innovacioncomercialx/static/js/main.f874058e.js.map"
+    "main.js": "/innovacioncomercialx-frontend-web/static/js/main.f874058e.js",
+    "index.html": "/innovacioncomercialx-frontend-web/index.html",
+    "main.f874058e.js.map": "/innovacioncomercialx-frontend-web/static/js/main.f874058e.js.map"
   },
   "entrypoints": [
     "static/js/main.f874058e.js"
