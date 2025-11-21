@@ -49,3 +49,6 @@ backend/*
 # Frontend: ignorar artefactos de build
 frontend/dist/
 frontend/.cache/
+.expo/
+test-clone/
+test-clone2/
