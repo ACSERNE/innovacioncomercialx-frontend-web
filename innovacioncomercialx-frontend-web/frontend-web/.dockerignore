@@ -1,0 +1,8 @@
+node_modules
+logs
+*.log
+*.csv
+*.xlsx
+*.pdf
+.env
+.DS_Store

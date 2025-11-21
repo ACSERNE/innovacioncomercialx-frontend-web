@@ -1,0 +1,23 @@
+# ===== Imagen base =====
+FROM node:20-alpine
+
+# ===== Variables de entorno =====
+ENV NODE_ENV=development
+
+# ===== Directorio de trabajo =====
+WORKDIR /app
+
+# ===== Copiar package.json y package-lock.json =====
+COPY package*.json ./
+
+# ===== Instalar dependencias =====
+RUN npm install --legacy-peer-deps
+
+# ===== Copiar todo el proyecto =====
+COPY . .
+
+# ===== Exponer puerto del frontend =====
+EXPOSE 3000
+
+# ===== Comando por defecto =====
+CMD ["sh", "-c", "npm start -- --host 0.0.0.0 --port 3000 || npm run dev -- --host 0.0.0.0 --port 3000"]

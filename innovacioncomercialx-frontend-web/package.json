@@ -1,0 +1,16 @@
+{
+  "name": "innovacioncomercialx",
+  "version": "1.0.0",
+  "description": "Proyecto Innovacion Comercial X",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "levantar": "bash levantar.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "uuid": "^13.0.0"
+  }
+}

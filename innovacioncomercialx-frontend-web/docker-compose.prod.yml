@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      target: prod
+    container_name: backend
+    ports:
+      - "5001:5001"
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+    depends_on:
+      - db
+
+  frontend-web:
+    build:
+      context: ./frontend-web
+      target: prod
+    container_name: frontend-web
+    ports:
+      - "3000:80"
+    environment:
+      NODE_ENV: production
+
+  frontend-mobile:
+    build:
+      context: ./frontend-mobile
+      target: prod
+    container_name: frontend-mobile
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+      - "19002:19002"
+    environment:
+      NODE_ENV: production
+
+  db:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

@@ -1,0 +1,27 @@
+{
+  "name": "frontend-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx expo start",
+    "android": "npx expo run:android",
+    "ios": "npx expo run:ios",
+    "web": "npx expo start --web",
+    "build": "npx expo build:web"
+  },
+  "dependencies": {
+    "expo": "^51.0.0",
+    "expo-status-bar": "~1.12.0",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.0",
+    "react-native-web": "*",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "sequelize-cli": "^6.6.3"
+  }
+}

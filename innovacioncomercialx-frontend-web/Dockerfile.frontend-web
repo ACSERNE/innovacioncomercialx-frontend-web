@@ -1,0 +1,12 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY innovacioncomercialx-frontend-web/frontend-web/package*.json ./
+RUN npm install
+
+COPY innovacioncomercialx-frontend-web/frontend-web ./
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

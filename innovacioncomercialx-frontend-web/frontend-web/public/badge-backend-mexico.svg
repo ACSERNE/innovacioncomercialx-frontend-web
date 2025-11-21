@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='150' height='20'>
+  <rect width='150' height='20' fill='#2c3e50'/>
+  <text x='10' y='15' fill='#ecf0f1' font-family='Verdana' font-size='12'>
+    Backend Mexico: OK
+  </text>
+</svg>
