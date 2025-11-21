@@ -40,3 +40,4 @@ docker-compose.override.yml
 .expo-shared/
 *.expo
 web-build/
+.env

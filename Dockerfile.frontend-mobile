@@ -1,0 +1,12 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY frontend-mobile/package*.json ./
+RUN npm install
+
+COPY frontend-mobile/ ./
+
+EXPOSE 19006
+
+CMD ["npx", "expo", "start", "--tunnel"]

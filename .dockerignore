@@ -1,14 +1,11 @@
-# Auto-generado por limpiar-contexto.sh
 node_modules
+npm-debug.log
+yarn-error.log
+.DS_Store
 .git
+.gitignore
+coverage
 dist
 build
-coverage
-.next
-.turbo
-.cache
-*.log
-*.tmp
-*.bak
-*.zip
-*.tar.gz
+.env
+docker-compose.override.yml

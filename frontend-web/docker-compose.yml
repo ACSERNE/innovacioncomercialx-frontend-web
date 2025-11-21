@@ -1,0 +1,63 @@
+services:
+  postgres-innovacion:
+    image: postgres:latest
+    container_name: postgres-innovacion
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin-innovacion:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-innovacion
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres-innovacion
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: comercialx-backend
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: postgres-innovacion
+      DB_PORT: ${DB_PORT}
+    ports:
+      - "5002:5001"
+    depends_on:
+      - postgres-innovacion
+
+  frontend-web:
+    build:
+      context: ./frontend-web
+      dockerfile: Dockerfile
+    container_name: frontend-web
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  frontend-mobile:
+    build:
+      context: ./frontend-mobile
+      dockerfile: Dockerfile
+    container_name: frontend-mobile
+    ports:
+      - "19000-19002:19000-19002"
+      - "19006:19006"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

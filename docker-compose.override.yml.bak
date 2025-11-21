@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  frontend-web:
+    ports:
+      - "🛑 Puerto 3000 ocupado por PID 6380. Cerrando proceso...
+3001:3000"
+  frontend-mobile:
+    ports:
+      - "19006:19006"
+  backend:
+    ports:
+      - "5001:5001"
