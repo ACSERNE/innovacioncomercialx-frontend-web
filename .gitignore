@@ -2,13 +2,13 @@
 node_modules/
 **/node_modules/
 
-# Environment variables
+# Environment variables (no subir nunca)
 .env
-.env.prod
-.env.*.local
+.env.*
+!.env.example   # puedes dejar un ejemplo si lo necesitas
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -23,21 +23,29 @@ dist/
 build/
 **/build/
 
-# Docker
+# Docker artefacts
 docker-compose.override.yml
-*.dockerfile
+docker-compose.local.yml
+.docker/
+*.tar
 *.pid
-*.sock
 
-# IDE / Editor configs
+# Coverage / testing
+coverage/
+*.lcov
+
+# IDE / editor configs
 .vscode/
 .idea/
-*.sublime-workspace
-*.sublime-project
+*.swp
 
-# React Native / Expo
-.expo/
-.expo-shared/
-*.expo
-web-build/
-.env
+# Backend: ignorar todo excepto migraciones y seeders
+backend/*
+!backend/migrations/
+!backend/migrations/*.js
+!backend/seeders/
+!backend/seeders/*.js
+
+# Frontend: ignorar artefactos de build
+frontend/dist/
+frontend/.cache/
